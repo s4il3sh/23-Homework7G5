@@ -75,8 +75,9 @@ cluster.set_vals(res.x)  # For some reason, "minimize" is not updating the class
 print ("Final optimized cluster positions")
 print(cluster.positions)
 print("Final potential:", res.fun)
+
 #initializing configuration for the structure. 
- a = 0.2
+a = 0.2
 r_na = np.array( [[0, 0, 0], [0, 0, 2*a], [0, a, a], [0, 2*a, -0.5*a]])
 r_cl = np.array( [[0, 0, a], [0, a, 2*a], [a, a, 0], [a, -a, 0]] )
 cluster = Cluster(r_na, r_cl)
@@ -85,16 +86,19 @@ print('initial Na positions:\n', r_na)
 print('initial Cl positions:\n', r_cl)
 print('initial positions flattened shape:\n', vals_init )
 print('initial V  :', cluster.V() )
+
 # optimizing energy
 res = scipy.optimize.minimize( fun=cluster, x0=vals_init, tol=1e-3, method="BFGS")
 cluster.set_vals(res.x)  # For some reason, "minimize" is not updating the class at the last iteration
 print ("Final optimized cluster positions")
 print(cluster.positions)
 print("Final potential:", res.fun)
+
 #ploting 
 %matplotlib inline
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+
 # Plotting
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
